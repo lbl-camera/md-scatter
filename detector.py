@@ -49,7 +49,12 @@ class Lambda750k(Detector):
         self.pixle_size = (55.E-06, 55.E-06)
 
 class Square512(Detector):
-    shape = (512, 512)
     def __init__(self):
+        self.shape = (512, 512)
         self.name = 'Virtual Detector'
+
+class Pilatus1M(Detector):
+    def __init__(self):
+        self.name = 'Pilatus 1M'
+        self.shape = (1043, 981)
         self.pixle_size = (172.E-06, 172.E-06)
