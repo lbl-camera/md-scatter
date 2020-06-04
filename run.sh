@@ -1,6 +1,6 @@
 #! /bin/bash
 
-python main.py ~/Data/Meshot/13_13/13_13_22.136AA_stabilized_CNT.xyz
-python main.py ~/Data/Meshot/13_13/13_13_22.136AA_stabilized_interior.xyz
-python main.py ~/Data/Meshot/8_8/8_8_22.103AA_stabilized_CNT.xyz  
-python main.py ~/Data/Meshot/8_8/8_8_22.103AA_stabilized_interior.xyz
+for ene in {680..700}; do
+    cfg=`jq ".energy = $ene" .exp.json`
+    python main.py ~/Data/Meshot/IL_CNT_MD/BMIM_FAP/26_26/IL_CNT.xyz "$cfg" &
+done
