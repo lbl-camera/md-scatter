@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 
 import re
+import math
 
 INT = re.compile(u'(\d+)')
 FLOAT = re.compile(u'(\d+)\.(\d+)')
@@ -26,7 +27,7 @@ class TimeStep():
             rep += '\t ....... \n'
         return rep
  
-def loadXYZ(filename):
+def loadXYZ(filename, max_steps=math.nan):
     time_steps = []
     curr_step = None
     with open(filename) as fp:
@@ -35,6 +36,8 @@ def loadXYZ(filename):
                 n_locs = int(line.strip('\n'))
                 if curr_step:
                     time_steps.append(curr_step)
+                    if len(time_steps) >= max_steps:
+                        break
                 curr_step = TimeStep()
             elif re.search(FLOAT, line):
                 elem, x, y, z = line.split()
